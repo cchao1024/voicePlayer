@@ -146,7 +146,7 @@ public class VoiceSpeaker {
                 public void run() {
                     playNext();
                 }
-            }, (long) (duration * 0.85));
+            }, (long) (duration * mRatio));
         }
     }
 
