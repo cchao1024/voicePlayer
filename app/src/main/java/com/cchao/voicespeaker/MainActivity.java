@@ -10,7 +10,10 @@ import android.widget.Toast;
 import com.cchao.voicesplayer.library.VoiceSpeaker;
 import com.cchao.voicesplayer.library.VoiceSynthesize;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * 使用 VoiceSpeaker
+ */
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     VoiceSpeaker mVoiceSpeaker;
 
@@ -19,24 +22,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initPlayer();
-
-        findViewById(R.id.play).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText editText = findViewById(R.id.edit);
-                String money=editText.getText().toString();
-                if (verifyInCorrect(money)) {
-                    return;
-                }
-                play(money);
-            }
-        });
+        mVoiceSpeaker = VoiceSpeaker.getInstance(this);
+        mVoiceSpeaker.setPlayRatio(0.7f);
+        mVoiceSpeaker.setMinMaxPlayEnd(100, 500);
     }
 
     private void play(String money) {
         mVoiceSpeaker.putQueue(new VoiceSynthesize()
-            .prefix("kjs")
+            .prefix("success")
             .numString(money)
             .build());
     }
@@ -65,8 +58,26 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 
-    private void initPlayer() {
-        mVoiceSpeaker = new VoiceSpeaker();
-        mVoiceSpeaker.init();
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.play:
+                EditText editText = findViewById(R.id.edit);
+                String money = editText.getText().toString();
+                if (verifyInCorrect(money)) {
+                    return;
+                }
+                play(money);
+                break;
+            case R.id.sample_1:
+                play("109.84");
+                break;
+            case R.id.sample_2:
+                play("9.84");
+                break;
+            case R.id.sample_3:
+                play("1234");
+                break;
+        }
     }
 }

@@ -7,23 +7,19 @@ import java.util.List;
 
 /**
  * 音频队列合成（生成待播放的音频文件名列表）
+ *
  * @author cchao
  * @version 11/6/18.
  */
 
 public class VoiceSynthesize {
 
-    private static final String DOT = ".";
-
-    private static final char[] NUM = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-    private static final char[] CHINESE_UNIT = {'元', '拾', '佰', '仟', '万', '拾', '佰', '仟', '亿', '拾', '佰', '仟'};
-
     private String mNumText;
 
     /**
      * 语音开头的音频文件名 如（wechat)
      */
-    private String mPrefix;
+    private String mPrefix = "alipay";
 
     /**
      * 语音开头的音频文件名 默认为 yuan
@@ -75,7 +71,7 @@ public class VoiceSynthesize {
         if (TextUtils.isEmpty(numString)) {
             return result;
         }
-        if (numString.contains(DOT)) {
+        if (numString.contains(".")) {
             String integerPart = numString.split("\\.")[0];
             String decimalPart = numString.split("\\.")[1];
             List<String> intList = genIntPart(integerPart);
@@ -130,7 +126,7 @@ public class VoiceSynthesize {
                     result.add("hundred");
                     break;
                 case '仟':
-                    result.add("ten");
+                    result.add("thousand");
                     break;
                 case '万':
                     result.add("ten_thousand");
@@ -165,8 +161,8 @@ public class VoiceSynthesize {
         }
 
         while (num > 0) {
-            res = CHINESE_UNIT[i++] + res;
-            res = NUM[num % 10] + res;
+            res = Constant.CHINESE_UNIT[i++] + res;
+            res = Constant.NUM[num % 10] + res;
             num /= 10;
         }
         return res.replaceAll("0[拾佰仟]", "0")

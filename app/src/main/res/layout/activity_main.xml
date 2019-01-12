@@ -12,6 +12,7 @@
         android:id="@+id/edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:hint="输入金额（元）"
         android:inputType="numberDecimal"/>
 
@@ -21,7 +22,38 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_margin="16dp"
+        android:onClick="onClick"
         android:padding="10dp"
         android:text="播放"/>
+
+    <Button
+        android:id="@+id/sample_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onClick"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:text="播放【收款成功 109.84 元】"/>
+
+    <Button
+        android:id="@+id/sample_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onClick"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:text="播放【收款成功 9.84 元】"/>
+
+    <Button
+        android:id="@+id/sample_3"
+        android:layout_width="wrap_content"
+        android:onClick="onClick"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:text="播放【收款成功 1234 元】"/>
 
 </LinearLayout>

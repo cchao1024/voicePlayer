@@ -1,15 +1,14 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'maven'
+apply plugin: 'com.novoda.bintray-release'
 android {
     compileSdkVersion 27
-
-
 
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 100
+        versionName "1.0.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -31,4 +30,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+publish {
+    userOrg = 'cchao1024' // 改成你在 bintray 上注册的用户名
+    groupId = 'com.github.cchao' // 改成你的包名（影响别人引用的第一段）
+    artifactId = 'xxx' // 改成你的 Library 名字（影响别人引用的第二段）
+    publishVersion = '1.0.1' // 版本号 （影响别人引用的第三段）
+    desc = 'moneyview'
+    website = 'https://github.com/cchao1024/xx'
 }
