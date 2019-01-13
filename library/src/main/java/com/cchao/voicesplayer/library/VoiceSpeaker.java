@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.MediaPlayer;
+import android.os.Handler;
 import android.util.Log;
 
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Queue;
 import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -32,6 +33,8 @@ public class VoiceSpeaker {
     private static VoiceSpeaker mInstance;
 
     Timer mTimer = new Timer();
+    Handler mHandler = new Handler();
+    ExecutorService mExecutorService = Executors.newCachedThreadPool();
     // MediaPlayer 实体列表
     HashMap<String, MediaPlayer> mPlayers = new HashMap<>();
 
@@ -45,7 +48,7 @@ public class VoiceSpeaker {
 
     // 当前播放状态
     private boolean mIsPlaying;
-    private float mRatio;
+    private float mRatio = Constant.NEXT_PLAY_RATIO;
 
     // 如果存在相同的数字 （比如：2.33 二点三三元） 则第一个三播放时需完整播放
     private String mSameNum;
@@ -93,7 +96,7 @@ public class VoiceSpeaker {
      * 初始化过程，生成 音频文件的对应 mediaPlay 实体
      */
     public void init() {
-        Executors.newCachedThreadPool().execute(new Runnable() {
+        mExecutorService.execute(new Runnable() {
             @Override
             public void run() {
                 for (String item : Constant.VOICE_NAME_ARR) {
@@ -135,18 +138,24 @@ public class VoiceSpeaker {
             return;
         }
         String key = mCurPlayList.get(mIndex++);
+        Log.d(TAG, "开始播放 " + key);
         togglePlaying(true);
         MediaPlayer mediaPlayer = mPlayers.get(key);
-        int duration = mediaPlayer.getDuration();
+        final int duration = mediaPlayer.getDuration();
         mediaPlayer.start();
         if (!isAllowPlayEnd(mediaPlayer)) {
-            //延时执行
-            mTimer.schedule(new TimerTask() {
+            mExecutorService.execute(new Runnable() {
                 @Override
                 public void run() {
-                    playNext();
+                    try {
+                        Thread.sleep((long) (duration * mRatio));
+                        Log.d(TAG, "倒计时结束");
+                        playNext();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
-            }, (long) (duration * mRatio));
+            });
         }
     }
 

@@ -18,7 +18,11 @@ public class Constant {
     /**
      * 允许完整的播放的最大值
      */
-    public static long ALL_PLAY_END_MAX = 500;
+    public static long ALL_PLAY_END_MAX = 1500;
+    /**
+     * 音频播放到比例后开始播放下一音频
+     */
+    public static float NEXT_PLAY_RATIO = 0.85f;
 
     /**
      * 音频文件名 数组

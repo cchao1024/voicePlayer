@@ -11,7 +11,7 @@ import com.cchao.voicesplayer.library.VoiceSpeaker;
 import com.cchao.voicesplayer.library.VoiceSynthesize;
 
 /**
- * 使用 VoiceSpeaker
+ * 使用 VoiceSpeaker sample
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         mVoiceSpeaker = VoiceSpeaker.getInstance(this);
-        mVoiceSpeaker.setPlayRatio(0.7f);
-        mVoiceSpeaker.setMinMaxPlayEnd(100, 500);
+        mVoiceSpeaker.setPlayRatio(0.88f);
+        mVoiceSpeaker.setMinMaxPlayEnd(100, 1500);
     }
 
     private void play(String money) {
