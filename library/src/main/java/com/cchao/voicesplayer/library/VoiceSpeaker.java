@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.MediaPlayer;
-import android.os.Handler;
 import android.util.Log;
 
 import java.io.IOException;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Queue;
-import java.util.Timer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -32,9 +30,8 @@ public class VoiceSpeaker {
     private static Context mContext;
     private static VoiceSpeaker mInstance;
 
-    Timer mTimer = new Timer();
-    Handler mHandler = new Handler();
-    ExecutorService mExecutorService = Executors.newCachedThreadPool();
+    // 池
+    private ExecutorService mExecutorService = Executors.newCachedThreadPool();
     // MediaPlayer 实体列表
     HashMap<String, MediaPlayer> mPlayers = new HashMap<>();
 
