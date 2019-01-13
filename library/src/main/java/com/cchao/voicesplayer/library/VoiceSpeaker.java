@@ -135,7 +135,6 @@ public class VoiceSpeaker {
             return;
         }
         String key = mCurPlayList.get(mIndex++);
-        Log.d(TAG, "开始播放 " + key);
         togglePlaying(true);
         MediaPlayer mediaPlayer = mPlayers.get(key);
         final int duration = mediaPlayer.getDuration();
@@ -146,7 +145,6 @@ public class VoiceSpeaker {
                 public void run() {
                     try {
                         Thread.sleep((long) (duration * mRatio));
-                        Log.d(TAG, "倒计时结束");
                         playNext();
                     } catch (Exception ex) {
                         ex.printStackTrace();

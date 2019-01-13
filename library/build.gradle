@@ -35,8 +35,8 @@ dependencies {
 publish {
     userOrg = 'cchao1024' // 改成你在 bintray 上注册的用户名
     groupId = 'com.github.cchao' // 改成你的包名（影响别人引用的第一段）
-    artifactId = 'xxx' // 改成你的 Library 名字（影响别人引用的第二段）
-    publishVersion = '1.0.1' // 版本号 （影响别人引用的第三段）
-    desc = 'moneyview'
-    website = 'https://github.com/cchao1024/xx'
+    artifactId = 'VoiceSpeaker' // 改成你的 Library 名字（影响别人引用的第二段）
+    publishVersion = '1.0.0' // 版本号 （影响别人引用的第三段）
+    desc = 'payment speech'
+    website = 'https://github.com/cchao1024/voicePlayer'
 }
