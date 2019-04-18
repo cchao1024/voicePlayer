@@ -3,6 +3,12 @@ title: Android 本地收款语音实现
 date: 2019-01-13 14:53:51
 tags: Android
 ---
+# Sample
+
+可以通过运行 **sample** 查看使用的范例代码以及默认的效果
+sample界面如下：
+
+![voice2.png](https://upload-images.jianshu.io/upload_images/1633382-4b22a477f04d153d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 # 如何使用
 
@@ -20,7 +26,9 @@ implementation 'com.github.cchao:VoiceSpeaker:1.0.0'
 
 // 使用初始化
 mVoiceSpeaker = VoiceSpeaker.getInstance(this);
+// 进入下一音频的速度
 mVoiceSpeaker.setPlayRatio(0.88f);
+// 设置允许完成完整播放的音频长度（太短或太长 均让其完整播放完，才进入下一音频的部分）
 mVoiceSpeaker.setMinMaxPlayEnd(100, 1500);
 
 // 放入队列播放 音频
@@ -30,13 +38,8 @@ mVoiceSpeaker.putQueue(new VoiceSynthesize()
  .build());
 ```
 
-
 详细代码请移步 [https://github.com/cchao1024/voicePlayer](https://github.com/cchao1024/voicePlayer)
 
-可以通过运行 **sample** 查看使用的范例代码以及默认的效果
-sample界面如下：
-
-![voice2.png](https://upload-images.jianshu.io/upload_images/1633382-4b22a477f04d153d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 # 需求
 
