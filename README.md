@@ -31,7 +31,7 @@ mVoiceSpeaker.setPlayRatio(0.88f);
 // 设置允许完成完整播放的音频长度（太短或太长 均让其完整播放完，才进入下一音频的部分）
 mVoiceSpeaker.setMinMaxPlayEnd(100, 1500);
 
-// 放入队列播放 音频
+// 放入队列播放音频
 mVoiceSpeaker.putQueue(new VoiceSynthesize()
  .prefix("success")
  .numString(money)
